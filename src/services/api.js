@@ -9,6 +9,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true, // Important for CORS with credentials
 });
 
 // Add token to requests if available
@@ -21,6 +22,21 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Handle common errors
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    console.error('API Error:', error);
+    if (error.response && error.response.status === 401) {
+      // Handle unauthorized access
+      localStorage.removeItem('userInfo');
+      localStorage.removeItem('userToken');
+      window.location.reload();
+    }
     return Promise.reject(error);
   }
 );

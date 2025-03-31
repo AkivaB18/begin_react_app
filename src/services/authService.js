@@ -50,6 +50,18 @@ export const getCurrentUser = () => {
   return userStr ? JSON.parse(userStr) : null;
 };
 
+// Get user profile from API
+export const getUserProfile = async () => {
+  try {
+    const response = await api.get('/users/profile');
+    return response.data;
+  } catch (error) {
+    throw error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message;
+  }
+};
+
 // Update pantry items
 export const updatePantryItems = async (pantryItems) => {
   try {

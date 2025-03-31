@@ -1,8 +1,51 @@
+import React, { useState, useEffect } from 'react';
 import ReactDOM from "react-dom/client";
-
 import App from "./App.jsx";
 import LoginPage from "./LoginPage.jsx";
-import "./index.css";
 import Pantry from "./Pantry.jsx";
+import "./index.css";
+import { getCurrentUser } from './services/authService';
+
+function Main() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showPantry, setShowPantry] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    // Check if user is already logged in
+    const userInfo = getCurrentUser();
+    if (userInfo) {
+      setIsLoggedIn(true);
+      setUser(userInfo);
+    }
+  }, []);
+
+  const handleLoginSuccess = () => {
+    setIsLoggedIn(true);
+    setUser(getCurrentUser());
+  };
+
+  const handleBackClick = () => {
+    setShowPantry(false);
+  };
+
+  const handlePantryClick = () => {
+    setShowPantry(true);
+  };
+
+  // Render different components based on authentication state
+  return (
+    <>
+      {!isLoggedIn ? (
+        <LoginPage onLoginSuccess={handleLoginSuccess} />
+      ) : showPantry ? (
+        <Pantry user={user} onBackClick={handleBackClick} />
+      ) : (
+        <App onPantryClick={handlePantryClick} />
+      )}
+    </>
+  );
+}
+
 const entryPoint = document.getElementById("root");
-ReactDOM.createRoot(entryPoint).render(<App />);
+ReactDOM.createRoot(entryPoint).render(<Main />);

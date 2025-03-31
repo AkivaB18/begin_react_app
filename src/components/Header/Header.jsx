@@ -1,8 +1,7 @@
 import reactImg from '../../assets/react-core-concepts.png';
 import './Header.css';
 
-export default function Header() {
-
+export default function Header({ onPantryClick }) {
   return (
     <header>
       <img src={reactImg} alt="Stylized atom" />
@@ -10,7 +9,7 @@ export default function Header() {
       <p>
         The days of forgetting what's in your pantry are behind you!
       </p>
-      <button id="pantryButton">Go to Pantry</button>
+      <button id="pantryButton" onClick={onPantryClick}>Go to Pantry</button>
     </header>
   );
 }
