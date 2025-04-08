@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import LoginPage from "./LoginPage.jsx";
 import Pantry from "./Pantry.jsx";
 import "./index.css";
-import { getCurrentUser } from './services/authService';
+import { getCurrentUser, logout } from './services/authService';
 
 function Main() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -33,6 +33,12 @@ function Main() {
     setShowPantry(true);
   };
 
+  const handleLogout = () => {
+    logout();
+    setIsLoggedIn(false);
+    setUser(null);
+  };
+
   // Render different components based on authentication state
   return (
     <>
@@ -41,7 +47,7 @@ function Main() {
       ) : showPantry ? (
         <Pantry user={user} onBackClick={handleBackClick} />
       ) : (
-        <App onPantryClick={handlePantryClick} />
+        <App onPantryClick={handlePantryClick} onLogout={handleLogout} />
       )}
     </>
   );

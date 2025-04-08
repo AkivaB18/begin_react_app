@@ -15,3 +15,92 @@
     padding: 0.5rem 1rem;
     font-size: 1rem;
 }
+
+.back-button {
+    background-color: #353f87;
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    text-align: center;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.back-button:hover {
+    background-color: #04AA6D; /* Green */
+    color: white;
+}
+
+.pantry-item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+    background-color: #1b082f; /* Subtle background for items */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pantry-item-container:hover {
+    background-color: #2f1d43; /* Slightly lighter on hover */
+}
+
+#itemName {
+    flex: 1;
+    font-size: 16px;
+    font-family: "Roboto Condensed", sans-serif;
+    color: #ebe7ef;
+    margin-right: 1rem; /* Add spacing between item name and buttons */
+}
+
+#editAmount {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Add spacing between buttons and count */
+}
+
+#editAmount button {
+    background-color: #353f87;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#editAmount button:hover {
+    background-color: #04AA6D; /* Green */
+    color: white;
+}
+
+#editAmount span {
+    font-size: 16px;
+    font-family: "Roboto Condensed", sans-serif;
+    color: #ebe7ef;
+    text-align: center;
+    min-width: 30px; /* Ensure consistent width for the count */
+}
+
+.delete-item-button {
+    background-color: #f44336; /* Red color for delete button */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-item-button:hover {
+    background-color: #da190b; /* Darker red on hover */
+}

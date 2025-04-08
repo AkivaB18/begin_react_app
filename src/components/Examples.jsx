@@ -1,29 +1,58 @@
-import {useState} from 'react'
-
+import { useState } from 'react';
 import TabButton from './TabButton.jsx';
-import { EXAMPLES } from "../data";
 
+export default function Examples() {
+  const [selectedBenefit, setSelectedBenefit] = useState();
 
-export default function Examples() { 
-    const [selectedTopic, setSelectedTopic] = useState();
-    
-    function handleClick(selectedButton) {
-        setSelectedTopic(selectedButton)
-    }
-    
-    return (<section id="examples">
-          <h2>React Features Involved</h2>
-          <menu>
-            <TabButton isSelected={selectedTopic === 'components'} onClick={() => handleClick('components')}>Components</TabButton>
-            <TabButton isSelected={selectedTopic === 'jsx'} onClick={() => handleClick('jsx')}>JSX</TabButton>
-            <TabButton isSelected={selectedTopic === 'props'} onClick={() => handleClick('props')}>Props</TabButton>
-            <TabButton isSelected={selectedTopic === 'state'} onClick={() => handleClick('state')}>State</TabButton>
-          </menu>
+  function handleClick(selectedButton) {
+    setSelectedBenefit(selectedButton);
+  }
 
-            {!selectedTopic ? <p>Please Select A Topic</p> : (<div id="tab-content">
-            <h3>{EXAMPLES[selectedTopic].title}</h3>
-            <p>{EXAMPLES[selectedTopic].description}</p>
-            <code>{EXAMPLES[selectedTopic].code}</code>
-          </div>)}
-        </section>);
+  const BENEFITS = {
+    organization: {
+      title: 'Stay Organized',
+      description: 'Keep track of all your pantry items in one place, so you never forget what you have.',
+    },
+    efficiency: {
+      title: 'Save Time',
+      description: 'Quickly update your pantry inventory and avoid unnecessary trips to the store.',
+    },
+    wasteReduction: {
+      title: 'Reduce Waste',
+      description: 'Know what you have and use it before it expires, reducing food waste.',
+    },
+    convenience: {
+      title: 'Convenience',
+      description: 'Access your pantry inventory anytime, anywhere, from any device.',
+    },
+  };
+
+  return (
+    <section id="examples">
+      <h2>Why Use Pantry Management?</h2>
+      <menu>
+        <TabButton isSelected={selectedBenefit === 'organization'} onClick={() => handleClick('organization')}>
+          Stay Organized
+        </TabButton>
+        <TabButton isSelected={selectedBenefit === 'efficiency'} onClick={() => handleClick('efficiency')}>
+          Save Time
+        </TabButton>
+        <TabButton isSelected={selectedBenefit === 'wasteReduction'} onClick={() => handleClick('wasteReduction')}>
+          Reduce Waste
+        </TabButton>
+        <TabButton isSelected={selectedBenefit === 'convenience'} onClick={() => handleClick('convenience')}>
+          Convenience
+        </TabButton>
+      </menu>
+
+      {!selectedBenefit ? (
+        <p>Please Select a Benefit</p>
+      ) : (
+        <div id="tab-content">
+          <h3>{BENEFITS[selectedBenefit].title}</h3>
+          <p>{BENEFITS[selectedBenefit].description}</p>
+        </div>
+      )}
+    </section>
+  );
 }
